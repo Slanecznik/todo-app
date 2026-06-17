@@ -1,0 +1,211 @@
+import { useState, useEffect, useRef } from "react";
+
+// ==================== Search ====================
+
+function Search(props) {
+    return (
+        <input
+            value={props.search} // показываем текст поиска
+            onChange={(e) => props.setSearch(e.target.value)} // меняем search
+            placeholder="Поиск задачи"
+        />
+    );
+}
+
+// ==================== TaskItem ====================
+
+function TaskItem(props) {
+    return (
+        <div>
+
+            {/* чекбокс выполнения */}
+
+            <input
+                type="checkbox"
+                checked={props.task.done}
+                onChange={() => props.toggleTask(props.task.id)}
+            />
+
+            {/* текст задачи */}
+
+            <span>
+        {props.task.text}
+      </span>
+
+            {/* удаление */}
+
+            <button onClick={() => props.deleteTask(props.task.id)}>
+                ❌
+            </button>
+
+        </div>
+    );
+}
+
+// ==================== TaskList ====================
+
+function TaskList(props) {
+    return (
+        <div>
+
+            {props.tasks.map((task) => (
+
+                <TaskItem
+                    key={task.id}
+                    task={task}
+                    deleteTask={props.deleteTask}
+                    toggleTask={props.toggleTask}
+                />
+
+            ))}
+
+        </div>
+    );
+}
+
+// ==================== App ====================
+
+function App() {
+
+    // Загружаем задачи из localStorage
+
+    const [tasks, setTasks] = useState(
+        JSON.parse(localStorage.getItem("tasks")) || []
+    );
+
+    // Текст новой задачи
+
+    const [text, setText] = useState("");
+
+    // Поиск
+
+    const [search, setSearch] = useState("");
+
+    // Ссылка на input
+
+    const inputRef = useRef(null);
+
+    // Сохраняем задачи после каждого изменения
+
+    useEffect(() => {
+
+        localStorage.setItem(
+            "tasks",
+            JSON.stringify(tasks)
+        );
+
+    }, [tasks]);
+
+    // ==================== Добавление ====================
+
+    const addTask = () => {
+
+        if (text.trim() === "") return;
+
+        const newTask = {
+            id: Date.now(),
+            text: text,
+            done: false
+        };
+
+        setTasks([...tasks, newTask]);
+
+        setText("");
+
+        // вернуть курсор в поле
+
+        inputRef.current.focus();
+    };
+
+    // ==================== Удаление ====================
+
+    const deleteTask = (taskId) => {
+
+        setTasks(
+
+            tasks.filter((task) => {
+
+                return task.id !== taskId;
+
+            })
+
+        );
+
+    };
+
+    // ==================== Выполнение ====================
+
+    const toggleTask = (taskId) => {
+
+        const newTasks = tasks.map((task) => {
+
+            if (task.id === taskId) {
+
+                return {
+                    ...task,
+                    done: !task.done
+                };
+
+            }
+
+            return task;
+
+        });
+
+        setTasks(newTasks);
+
+    };
+
+    // ==================== Поиск ====================
+
+    const filteredTasks = tasks.filter((task) => {
+
+        return task.text
+            .toLowerCase()
+            .includes(search.toLowerCase());
+
+    });
+
+    return (
+        <div>
+
+            <h1>Todo App</h1>
+
+            {/* поиск */}
+
+            <Search
+                search={search}
+                setSearch={setSearch}
+            />
+
+            <br />
+            <br />
+
+            {/* новая задача */}
+
+            <input
+                ref={inputRef}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Новая задача"
+            />
+
+            <button onClick={addTask}>
+                Добавить
+            </button>
+
+            <hr />
+
+            {/* список задач */}
+
+            <TaskList
+                tasks={filteredTasks}
+                deleteTask={deleteTask}
+                toggleTask={toggleTask}
+            />
+
+        </div>
+    );
+}
+
+export default App;
