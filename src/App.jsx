@@ -1,16 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-
-// ==================== Search ====================
-
-function Search(props) {
-    return (
-        <input
-            value={props.search} // показываем текст поиска
-            onChange={(e) => props.setSearch(e.target.value)} // меняем search
-            placeholder="Поиск задачи"
-        />
-    );
-}
+import Search from "./components/Search";
 
 // ==================== TaskItem ====================
 
