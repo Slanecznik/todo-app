@@ -1,56 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Search from "./components/Search";
-
-// ==================== TaskItem ====================
-
-function TaskItem(props) {
-    return (
-        <div>
-
-            {/* чекбокс выполнения */}
-
-            <input
-                type="checkbox"
-                checked={props.task.done}
-                onChange={() => props.toggleTask(props.task.id)}
-            />
-
-            {/* текст задачи */}
-
-            <span>
-        {props.task.text}
-      </span>
-
-            {/* удаление */}
-
-            <button onClick={() => props.deleteTask(props.task.id)}>
-                ❌
-            </button>
-
-        </div>
-    );
-}
-
-// ==================== TaskList ====================
-
-function TaskList(props) {
-    return (
-        <div>
-
-            {props.tasks.map((task) => (
-
-                <TaskItem
-                    key={task.id}
-                    task={task}
-                    deleteTask={props.deleteTask}
-                    toggleTask={props.toggleTask}
-                />
-
-            ))}
-
-        </div>
-    );
-}
+import TaskList from "./components/TaskList";
 
 // ==================== App ====================
 
