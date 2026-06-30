@@ -20,6 +20,13 @@ function App() {
 
     const [search, setSearch] = useState("");
 
+    // Какой фильтр сейчас выбран
+// all — показать все задачи
+// active — только невыполненные
+// completed — только выполненные
+
+    const [filter, setFilter] = useState("all");
+
     // Ссылка на input
 
     const inputRef = useRef(null);
@@ -116,6 +123,27 @@ function App() {
                 search={search}
                 setSearch={setSearch}
             />
+
+            <br />
+            <br />
+
+            {/* Кнопка "Все" */}
+
+            <button onClick={() => setFilter("all")}>
+                Все
+            </button>
+
+            {/* Кнопка "Активные" */}
+
+            <button onClick={() => setFilter("active")}>
+                Активные
+            </button>
+
+            {/* Кнопка "Выполненные" */}
+
+            <button onClick={() => setFilter("completed")}>
+                Выполненные
+            </button>
 
             <br />
             <br />
