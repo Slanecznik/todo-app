@@ -137,11 +137,17 @@ function App() {
 
             {/* список задач */}
 
-            <TaskList
-                tasks={filteredTasks}
-                deleteTask={deleteTask}
-                toggleTask={toggleTask}
-            />
+            {/* Если задач нет */}
+
+            {filteredTasks.length === 0 ? (
+                <p>📝 Пока задач нет. Добавьте первую задачу.</p>
+            ) : (
+                <TaskList
+                    tasks={filteredTasks}
+                    deleteTask={deleteTask}
+                    toggleTask={toggleTask}
+                />
+            )}
 
         </div>
     );
