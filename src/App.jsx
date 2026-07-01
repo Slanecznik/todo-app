@@ -104,13 +104,27 @@ function App() {
 
     // ==================== Поиск ====================
 
-    const filteredTasks = tasks.filter((task) => {
+    const searchedTasks = tasks.filter((task) => {
 
         return task.text
             .toLowerCase()
             .includes(search.toLowerCase());
 
     });
+
+    let filteredTasks = searchedTasks;
+
+    if (filter === "active") {
+
+        filteredTasks = searchedTasks.filter((task) => !task.done);
+
+    }
+
+    if (filter === "completed") {
+
+        filteredTasks = searchedTasks.filter((task) => task.done);
+
+    }
 
     return (
         <div>
