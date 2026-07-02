@@ -127,7 +127,7 @@ function App() {
     }
 
     return (
-        <div>
+        <div className="app">
 
             <h1>Todo App</h1>
 
@@ -143,19 +143,28 @@ function App() {
 
             {/* Кнопка "Все" */}
 
-            <button onClick={() => setFilter("all")}>
+            <button
+                className={filter === "all" ? "active-filter" : ""}
+                onClick={() => setFilter("all")}
+            >
                 Все
             </button>
 
             {/* Кнопка "Активные" */}
 
-            <button onClick={() => setFilter("active")}>
+            <button
+                className={filter === "active" ? "active-filter" : ""}
+                onClick={() => setFilter("active")}
+            >
                 Активные
             </button>
 
             {/* Кнопка "Выполненные" */}
 
-            <button onClick={() => setFilter("completed")}>
+            <button
+                className={filter === "completed" ? "active-filter" : ""}
+                onClick={() => setFilter("completed")}
+            >
                 Выполненные
             </button>
 

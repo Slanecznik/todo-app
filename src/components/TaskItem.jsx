@@ -1,6 +1,6 @@
 function TaskItem(props) {
     return (
-        <div>
+        <div className="task">
 
             <input
                 type="checkbox"
@@ -8,9 +8,9 @@ function TaskItem(props) {
                 onChange={() => props.toggleTask(props.task.id)}
             />
 
-            <span>
-                {props.task.text}
-            </span>
+            <span className={props.task.done ? "done" : ""}>
+    {props.task.text}
+</span>
 
             <button
                 onClick={() => props.deleteTask(props.task.id)}
