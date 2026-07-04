@@ -129,7 +129,7 @@ function App() {
     return (
         <div className="app">
 
-            <h1>Todo App</h1>
+            <h1>📝 My Todo App</h1>
 
             {/* поиск */}
 
@@ -138,8 +138,7 @@ function App() {
                 setSearch={setSearch}
             />
 
-            <br />
-            <br />
+            <hr className="section-line" />
 
             {/* Кнопка "Все" */}
 
@@ -168,23 +167,26 @@ function App() {
                 Выполненные
             </button>
 
-            <br />
-            <br />
+            <hr className="section-line" />
 
             {/* новая задача */}
 
-            <input
-                ref={inputRef}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Новая задача"
-            />
+            <div className="add-task">
 
-            <button onClick={addTask}>
-                Добавить
-            </button>
+                <input
+                    ref={inputRef}
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Новая задача"
+                />
 
-            <hr />
+                <button onClick={addTask}>
+                    Добавить
+                </button>
+
+            </div>
+
+            <hr className="section-line" />
 
             {/* список задач */}
 
