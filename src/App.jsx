@@ -140,32 +140,32 @@ function App() {
 
             <hr className="section-line" />
 
-            {/* Кнопка "Все" */}
+            {/* Контейнер для кнопок фильтра */}
 
-            <button
-                className={filter === "all" ? "active-filter" : ""}
-                onClick={() => setFilter("all")}
-            >
-                Все
-            </button>
+            <div className="filters">
 
-            {/* Кнопка "Активные" */}
+                <button
+                    className={filter === "all" ? "active-filter" : ""}
+                    onClick={() => setFilter("all")}
+                >
+                    Все
+                </button>
 
-            <button
-                className={filter === "active" ? "active-filter" : ""}
-                onClick={() => setFilter("active")}
-            >
-                Активные
-            </button>
+                <button
+                    className={filter === "active" ? "active-filter" : ""}
+                    onClick={() => setFilter("active")}
+                >
+                    Активные
+                </button>
 
-            {/* Кнопка "Выполненные" */}
+                <button
+                    className={filter === "completed" ? "active-filter" : ""}
+                    onClick={() => setFilter("completed")}
+                >
+                    Выполненные
+                </button>
 
-            <button
-                className={filter === "completed" ? "active-filter" : ""}
-                onClick={() => setFilter("completed")}
-            >
-                Выполненные
-            </button>
+            </div>
 
             <hr className="section-line" />
 

@@ -119,3 +119,8 @@ button:hover {
   height: 20px;
   cursor: pointer;
 }
+
+.filters {
+  display: flex;
+  gap: 16px;
+}
