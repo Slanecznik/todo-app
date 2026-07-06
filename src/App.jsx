@@ -126,6 +126,33 @@ function App() {
 
     }
 
+    // ==================== Статистика ====================
+
+// Общее количество задач
+
+    const totalTasks = tasks.length;
+
+    // Количество активных задач
+
+    const activeTasks = tasks.filter((task) => {
+
+        // Оставляем только задачи,
+        // которые ещё не выполнены
+
+        return !task.done;
+
+    }).length;
+
+    // Количество выполненных задач
+
+    const completedTasks = tasks.filter((task) => {
+
+        // Оставляем только выполненные задачи
+
+        return task.done;
+
+    }).length;
+
     return (
         <div className="app">
 
@@ -187,6 +214,28 @@ function App() {
             </div>
 
             <hr className="section-line" />
+
+
+            {/* Статистика */}
+
+            <div className="stats">
+
+                <div className="stat-card">
+                    <h3>📋 Всего</h3>
+                    <span>{totalTasks}</span>
+                </div>
+
+                <div className="stat-card">
+                    <h3>🟢 Активных</h3>
+                    <span>{activeTasks}</span>
+                </div>
+
+                <div className="stat-card">
+                    <h3>✅ Выполнено</h3>
+                    <span>{completedTasks}</span>
+                </div>
+
+            </div>
 
             {/* список задач */}
 

@@ -124,3 +124,32 @@ button:hover {
   display: flex;
   gap: 16px;
 }
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.stat-card span {
+  display: block;
+  margin-top: 12px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #14b8a6;
+}
