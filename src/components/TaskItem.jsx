@@ -12,6 +12,10 @@ function TaskItem(props) {
     {props.task.text}
 </span>
 
+            <button>
+                ✏️
+            </button>
+
             <button
                 onClick={() => props.deleteTask(props.task.id)}
             >
