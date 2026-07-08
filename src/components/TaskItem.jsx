@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 function TaskItem(props) {
+    const [isEditing, setIsEditing] = useState(false);
     return (
         <div className="task">
 
@@ -12,7 +15,9 @@ function TaskItem(props) {
     {props.task.text}
 </span>
 
-            <button>
+            <button
+                onClick={() => setIsEditing(true)}
+            >
                 ✏️
             </button>
 
