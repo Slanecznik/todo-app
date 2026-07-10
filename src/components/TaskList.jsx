@@ -9,6 +9,7 @@ function TaskList(props) {
                     task={task}
                     deleteTask={props.deleteTask}
                     toggleTask={props.toggleTask}
+                    editTask={props.editTask}
                 />
             ))}
         </div>

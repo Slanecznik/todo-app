@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function TaskItem(props) {
+    const [editedText, setEditedText] = useState(props.task.text);
     const [isEditing, setIsEditing] = useState(false);
     return (
         <div className="task">
@@ -11,9 +12,18 @@ function TaskItem(props) {
                 onChange={() => props.toggleTask(props.task.id)}
             />
 
-            <span className={props.task.done ? "done" : ""}>
-    {props.task.text}
-</span>
+            {
+                isEditing ? (
+                    <input
+                        value={editedText}
+                        onChange={(e) => setEditedText(e.target.value)}
+                    />
+                ) : (
+                    <span className={props.task.done ? "done" : ""}>
+            {props.task.text}
+        </span>
+                )
+            }
 
             <button
                 onClick={() => setIsEditing(true)}

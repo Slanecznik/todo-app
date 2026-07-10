@@ -102,6 +102,32 @@ function App() {
 
     };
 
+    // ==================== Редактирование ====================
+
+    const editTask = (taskId, newText) => {
+
+        const newTasks = tasks.map((task) => {
+
+            if (task.id === taskId) {
+
+                return {
+
+                    ...task,
+
+                    text: newText
+
+                };
+
+            }
+
+            return task;
+
+        });
+
+        setTasks(newTasks);
+
+    };
+
     // ==================== Поиск ====================
 
     const searchedTasks = tasks.filter((task) => {
@@ -248,6 +274,7 @@ function App() {
                     tasks={filteredTasks}
                     deleteTask={deleteTask}
                     toggleTask={toggleTask}
+                    editTask={editTask}
                 />
             )}
 
