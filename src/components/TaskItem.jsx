@@ -3,6 +3,12 @@ import { useState } from "react";
 function TaskItem(props) {
     const [editedText, setEditedText] = useState(props.task.text);
     const [isEditing, setIsEditing] = useState(false);
+
+    const saveTask = () => {
+        props.editTask(props.task.id, editedText);
+        setIsEditing(false);
+    };
+
     return (
         <div className="task">
 
@@ -25,11 +31,19 @@ function TaskItem(props) {
                 )
             }
 
-            <button
-                onClick={() => setIsEditing(true)}
-            >
-                ✏️
-            </button>
+            {
+                isEditing ? (
+                    <button onClick={saveTask}>
+                        💾
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => setIsEditing(true)}
+                    >
+                        ✏️
+                    </button>
+                )
+            }
 
             <button
                 onClick={() => props.deleteTask(props.task.id)}
