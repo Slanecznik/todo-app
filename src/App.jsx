@@ -79,6 +79,12 @@ function App() {
 
     };
 
+    const clearCompleted = () => {
+        const activeTasks = tasks.filter((task) => !task.done);
+
+        setTasks(activeTasks);
+    };
+
     // ==================== Выполнение ====================
 
     const toggleTask = (taskId) => {
@@ -262,6 +268,10 @@ function App() {
                 </div>
 
             </div>
+
+            <button onClick={clearCompleted}>
+                🗑 Очистить выполненные
+            </button>
 
             {/* список задач */}
 
