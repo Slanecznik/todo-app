@@ -27,6 +27,8 @@ function App() {
 
     const [filter, setFilter] = useState("all");
 
+    const [sortType, setSortType] = useState("new");
+
     // Ссылка на input
 
     const inputRef = useRef(null);
@@ -158,6 +160,22 @@ function App() {
 
     }
 
+    filteredTasks = [...filteredTasks];
+
+    if (sortType === "new") {
+        filteredTasks.sort((a, b) => b.id - a.id);
+    }
+
+    if (sortType === "old") {
+        filteredTasks.sort((a, b) => a.id - b.id);
+    }
+
+    if (sortType === "abc") {
+        filteredTasks.sort((a, b) =>
+            a.text.localeCompare(b.text)
+        );
+    }
+
     // ==================== Статистика ====================
 
 // Общее количество задач
@@ -227,6 +245,23 @@ function App() {
             </div>
 
             <hr className="section-line" />
+
+            <div className="filters">
+                <button onClick={() => setSortType("new")}>
+                    🆕 Новые
+                </button>
+
+                <button onClick={() => setSortType("old")}>
+                    📅 Старые
+                </button>
+
+                <button onClick={() => setSortType("abc")}>
+                    🔤 А-Я
+                </button>
+            </div>
+
+            <hr className="section-line" />
+
 
             {/* новая задача */}
 
