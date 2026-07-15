@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Search from "./components/Search";
 import TaskList from "./components/TaskList";
+import FilterButtons from "./components/FilterButtons";
+
 
 // ==================== App ====================
 
@@ -219,30 +221,10 @@ function App() {
 
             {/* Контейнер для кнопок фильтра */}
 
-            <div className="filters">
-
-                <button
-                    className={filter === "all" ? "active-filter" : ""}
-                    onClick={() => setFilter("all")}
-                >
-                    Все
-                </button>
-
-                <button
-                    className={filter === "active" ? "active-filter" : ""}
-                    onClick={() => setFilter("active")}
-                >
-                    Активные
-                </button>
-
-                <button
-                    className={filter === "completed" ? "active-filter" : ""}
-                    onClick={() => setFilter("completed")}
-                >
-                    Выполненные
-                </button>
-
-            </div>
+            <FilterButtons
+                filter={filter}
+                setFilter={setFilter}
+            />
 
             <hr className="section-line" />
 
