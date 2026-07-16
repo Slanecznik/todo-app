@@ -71,13 +71,27 @@ function App() {
 
     const deleteTask = (taskId) => {
 
+        // Спрашиваем пользователя
+
+        const isConfirmed = window.confirm(
+
+            "Вы действительно хотите удалить эту задачу?"
+
+        );
+
+        // Если пользователь нажал "Отмена"
+
+        if (!isConfirmed) {
+
+            return;
+
+        }
+
+        // Удаляем задачу
+
         setTasks(
 
-            tasks.filter((task) => {
-
-                return task.id !== taskId;
-
-            })
+            tasks.filter((task) => task.id !== taskId)
 
         );
 
@@ -253,6 +267,11 @@ function App() {
                     ref={inputRef}
                     value={text}
                     onChange={(e) => setText(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            addTask();
+                        }
+                    }}
                     placeholder="Новая задача"
                 />
 

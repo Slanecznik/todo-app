@@ -23,6 +23,18 @@ function TaskItem(props) {
                     <input
                         value={editedText}
                         onChange={(e) => setEditedText(e.target.value)}
+                        onKeyDown={(e) => {
+
+                            if (e.key === "Enter") {
+                                saveTask();
+                            }
+
+                            if (e.key === "Escape") {
+                                setEditedText(props.task.text);
+                                setIsEditing(false);
+                            }
+
+                        }}
                     />
                 ) : (
                     <span className={props.task.done ? "done" : ""}>
