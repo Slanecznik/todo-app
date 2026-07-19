@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Search from "./components/Search";
 import TaskList from "./components/TaskList";
 import FilterButtons from "./components/FilterButtons";
-
+import Statistics from "./components/Statistics";
 
 // ==================== App ====================
 
@@ -283,27 +283,11 @@ function App() {
 
             <hr className="section-line" />
 
-
-            {/* Статистика */}
-
-            <div className="stats">
-
-                <div className="stat-card">
-                    <h3>📋 Всего</h3>
-                    <span>{totalTasks}</span>
-                </div>
-
-                <div className="stat-card">
-                    <h3>🟢 Активных</h3>
-                    <span>{activeTasks}</span>
-                </div>
-
-                <div className="stat-card">
-                    <h3>✅ Выполнено</h3>
-                    <span>{completedTasks}</span>
-                </div>
-
-            </div>
+            <Statistics
+                totalTasks={totalTasks}
+                activeTasks={activeTasks}
+                completedTasks={completedTasks}
+            />
 
             <button onClick={clearCompleted}>
                 🗑 Очистить выполненные
