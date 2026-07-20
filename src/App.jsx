@@ -3,6 +3,7 @@ import Search from "./components/Search";
 import TaskList from "./components/TaskList";
 import FilterButtons from "./components/FilterButtons";
 import Statistics from "./components/Statistics";
+import AddTask from "./components/AddTask";
 
 // ==================== App ====================
 
@@ -261,25 +262,12 @@ function App() {
 
             {/* новая задача */}
 
-            <div className="add-task">
-
-                <input
-                    ref={inputRef}
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            addTask();
-                        }
-                    }}
-                    placeholder="Новая задача"
-                />
-
-                <button onClick={addTask}>
-                    Добавить
-                </button>
-
-            </div>
+            <AddTask
+                text={text}
+                setText={setText}
+                addTask={addTask}
+                inputRef={inputRef}
+            />
 
             <hr className="section-line" />
 
