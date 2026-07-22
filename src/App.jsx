@@ -4,7 +4,7 @@ import TaskList from "./components/TaskList";
 import FilterButtons from "./components/FilterButtons";
 import Statistics from "./components/Statistics";
 import AddTask from "./components/AddTask";
-
+import SortButtons from "./components/SortButtons";
 // ==================== App ====================
 
 function App() {
@@ -243,19 +243,10 @@ function App() {
 
             <hr className="section-line" />
 
-            <div className="filters">
-                <button onClick={() => setSortType("new")}>
-                    🆕 Новые
-                </button>
-
-                <button onClick={() => setSortType("old")}>
-                    📅 Старые
-                </button>
-
-                <button onClick={() => setSortType("abc")}>
-                    🔤 А-Я
-                </button>
-            </div>
+            <SortButtons
+                sortType={sortType}
+                setSortType={setSortType}
+            />
 
             <hr className="section-line" />
 
