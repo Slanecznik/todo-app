@@ -5,6 +5,12 @@ import FilterButtons from "./components/FilterButtons";
 import Statistics from "./components/Statistics";
 import AddTask from "./components/AddTask";
 import SortButtons from "./components/SortButtons";
+import {
+    getTotalTasks,
+    getActiveTasks,
+    getCompletedTasks
+} from "./utils/taskUtils";
+
 // ==================== App ====================
 
 function App() {
@@ -195,30 +201,11 @@ function App() {
 
     // ==================== Статистика ====================
 
-// Общее количество задач
+    const totalTasks = getTotalTasks(tasks);
 
-    const totalTasks = tasks.length;
+    const activeTasks = getActiveTasks(tasks);
 
-    // Количество активных задач
-
-    const activeTasks = tasks.filter((task) => {
-
-        // Оставляем только задачи,
-        // которые ещё не выполнены
-
-        return !task.done;
-
-    }).length;
-
-    // Количество выполненных задач
-
-    const completedTasks = tasks.filter((task) => {
-
-        // Оставляем только выполненные задачи
-
-        return task.done;
-
-    }).length;
+    const completedTasks = getCompletedTasks(tasks);
 
     return (
         <div className="app">
