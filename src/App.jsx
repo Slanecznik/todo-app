@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import {useState, useEffect, useRef, useMemo} from "react";
 import Search from "./components/Search";
 import TaskList from "./components/TaskList";
 import FilterButtons from "./components/FilterButtons";
@@ -161,13 +161,17 @@ function App() {
 
     // ==================== Поиск ====================
 
-    const searchedTasks = tasks.filter((task) => {
+    const searchedTasks = useMemo(() => {
 
-        return task.text
-            .toLowerCase()
-            .includes(search.toLowerCase());
+        return tasks.filter((task) => {
 
-    });
+            return task.text
+                .toLowerCase()
+                .includes(search.toLowerCase());
+
+        });
+
+    }, [tasks, search]);
 
     let filteredTasks = searchedTasks;
 
