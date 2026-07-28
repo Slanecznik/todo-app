@@ -173,19 +173,23 @@ function App() {
 
     }, [tasks, search]);
 
-    let filteredTasks = searchedTasks;
+    const filteredTasks = useMemo(() => {
 
-    if (filter === "active") {
+        if (filter === "active") {
 
-        filteredTasks = searchedTasks.filter((task) => !task.done);
+            return searchedTasks.filter((task) => !task.done);
 
-    }
+        }
 
-    if (filter === "completed") {
+        if (filter === "completed") {
 
-        filteredTasks = searchedTasks.filter((task) => task.done);
+            return searchedTasks.filter((task) => task.done);
 
-    }
+        }
+
+        return searchedTasks;
+
+    }, [searchedTasks, filter]);
 
     filteredTasks = [...filteredTasks];
 
