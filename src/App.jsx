@@ -191,21 +191,27 @@ function App() {
 
     }, [searchedTasks, filter]);
 
-    filteredTasks = [...filteredTasks];
+    const sortedTasks = useMemo(() => {
 
-    if (sortType === "new") {
-        filteredTasks.sort((a, b) => b.id - a.id);
-    }
+        const result = [...filteredTasks];
 
-    if (sortType === "old") {
-        filteredTasks.sort((a, b) => a.id - b.id);
-    }
+        if (sortType === "new") {
+            result.sort((a, b) => b.id - a.id);
+        }
 
-    if (sortType === "abc") {
-        filteredTasks.sort((a, b) =>
-            a.text.localeCompare(b.text)
-        );
-    }
+        if (sortType === "old") {
+            result.sort((a, b) => a.id - b.id);
+        }
+
+        if (sortType === "abc") {
+            result.sort((a, b) =>
+                a.text.localeCompare(b.text)
+            );
+        }
+
+        return result;
+
+    }, [filteredTasks, sortType]);
 
     // ==================== Статистика ====================
 
@@ -275,7 +281,7 @@ function App() {
                 <p>📝 Пока задач нет. Добавьте первую задачу.</p>
             ) : (
                 <TaskList
-                    tasks={filteredTasks}
+                    tasks={sortedTasks}
                     deleteTask={deleteTask}
                     toggleTask={toggleTask}
                     editTask={editTask}
