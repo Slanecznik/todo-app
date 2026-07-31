@@ -1,6 +1,10 @@
-// ==================== Statistics ====================
+import { memo } from "react";
 
-function Statistics({ totalTasks, activeTasks, completedTasks }) {
+export const Statistics = memo(function Statistics({
+                                                       totalTasks,
+                                                       activeTasks,
+                                                       completedTasks
+                                                   }) {
 
     return (
 
@@ -25,6 +29,4 @@ function Statistics({ totalTasks, activeTasks, completedTasks }) {
 
     );
 
-}
-
-export default Statistics;
+});
