@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef, useMemo} from "react";
+import {useState, useEffect, useRef, useMemo, useCallback} from "react";
 import Search from "./components/Search";
 import TaskList from "./components/TaskList";
 import FilterButtons from "./components/FilterButtons";
@@ -76,9 +76,7 @@ function App() {
 
     // ==================== Удаление ====================
 
-    const deleteTask = (taskId) => {
-
-        // Спрашиваем пользователя
+    const deleteTask = useCallback((taskId) => {
 
         const isConfirmed = window.confirm(
 
@@ -86,23 +84,23 @@ function App() {
 
         );
 
-        // Если пользователь нажал "Отмена"
-
         if (!isConfirmed) {
 
             return;
 
         }
 
-        // Удаляем задачу
+        setTasks((currentTasks) => {
 
-        setTasks(
+            return currentTasks.filter((task) => {
 
-            tasks.filter((task) => task.id !== taskId)
+                return task.id !== taskId;
 
-        );
+            });
 
-    };
+        });
+
+    }, []);
 
     const clearCompleted = () => {
         const activeTasks = tasks.filter((task) => !task.done);
