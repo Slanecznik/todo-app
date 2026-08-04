@@ -110,26 +110,31 @@ function App() {
 
     // ==================== Выполнение ====================
 
-    const toggleTask = (taskId) => {
+    const toggleTask = useCallback((taskId) => {
 
-        const newTasks = tasks.map((task) => {
+        setTasks((currentTasks) => {
 
-            if (task.id === taskId) {
+            return currentTasks.map((task) => {
 
-                return {
-                    ...task,
-                    done: !task.done
-                };
+                if (task.id === taskId) {
 
-            }
+                    return {
 
-            return task;
+                        ...task,
+
+                        done: !task.done
+
+                    };
+
+                }
+
+                return task;
+
+            });
 
         });
 
-        setTasks(newTasks);
-
-    };
+    }, []);
 
     // ==================== Редактирование ====================
 
