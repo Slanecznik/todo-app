@@ -138,29 +138,31 @@ function App() {
 
     // ==================== Редактирование ====================
 
-    const editTask = (taskId, newText) => {
+    const editTask = useCallback((taskId, newText) => {
 
-        const newTasks = tasks.map((task) => {
+        setTasks((currentTasks) => {
 
-            if (task.id === taskId) {
+            return currentTasks.map((task) => {
 
-                return {
+                if (task.id === taskId) {
 
-                    ...task,
+                    return {
 
-                    text: newText
+                        ...task,
 
-                };
+                        text: newText
 
-            }
+                    };
 
-            return task;
+                }
+
+                return task;
+
+            });
 
         });
 
-        setTasks(newTasks);
-
-    };
+    }, []);
 
     // ==================== Поиск ====================
 
