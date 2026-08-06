@@ -55,24 +55,37 @@ function App() {
 
     // ==================== Добавление ====================
 
-    const addTask = () => {
+    const addTask = useCallback(() => {
 
         if (text.trim() === "") return;
 
         const newTask = {
+
             id: Date.now(),
+
             text: text,
+
             done: false
+
         };
 
-        setTasks([...tasks, newTask]);
+        setTasks((currentTasks) => {
+
+            return [
+
+                ...currentTasks,
+
+                newTask
+
+            ];
+
+        });
 
         setText("");
 
-        // вернуть курсор в поле
-
         inputRef.current.focus();
-    };
+
+    }, [text]);
 
     // ==================== Удаление ====================
 
