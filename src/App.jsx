@@ -2,7 +2,7 @@ import {useState, useEffect, useRef, useMemo, useCallback} from "react";
 import Search from "./components/Search";
 import TaskList from "./components/TaskList";
 import FilterButtons from "./components/FilterButtons";
-import { Statistics } from "./components/Statistics";
+import {Statistics} from "./components/Statistics";
 import AddTask from "./components/AddTask";
 import SortButtons from "./components/SortButtons";
 import {
@@ -10,6 +10,7 @@ import {
     getActiveTasks,
     getCompletedTasks
 } from "./utils/taskUtils";
+import {Card} from "./components/Card";
 
 // ==================== App ====================
 
@@ -92,9 +93,7 @@ function App() {
     const deleteTask = useCallback((taskId) => {
 
         const isConfirmed = window.confirm(
-
             "Вы действительно хотите удалить эту задачу?"
-
         );
 
         if (!isConfirmed) {
@@ -246,12 +245,14 @@ function App() {
 
             {/* поиск */}
 
-            <Search
-                search={search}
-                setSearch={setSearch}
-            />
+            <Card>
+                <Search
+                    search={search}
+                    setSearch={setSearch}
+                />
+            </Card>
 
-            <hr className="section-line" />
+            <hr className="section-line"/>
 
             {/* Контейнер для кнопок фильтра */}
 
@@ -260,14 +261,14 @@ function App() {
                 setFilter={setFilter}
             />
 
-            <hr className="section-line" />
+            <hr className="section-line"/>
 
             <SortButtons
                 sortType={sortType}
                 setSortType={setSortType}
             />
 
-            <hr className="section-line" />
+            <hr className="section-line"/>
 
 
             {/* новая задача */}
@@ -279,13 +280,15 @@ function App() {
                 inputRef={inputRef}
             />
 
-            <hr className="section-line" />
+            <hr className="section-line"/>
 
-            <Statistics
-                totalTasks={totalTasks}
-                activeTasks={activeTasks}
-                completedTasks={completedTasks}
-            />
+            <Card>
+                <Statistics
+                    totalTasks={totalTasks}
+                    activeTasks={activeTasks}
+                    completedTasks={completedTasks}
+                />
+            </Card>
 
             <button onClick={clearCompleted}>
                 🗑 Очистить выполненные
