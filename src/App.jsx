@@ -10,7 +10,8 @@ import {
     getActiveTasks,
     getCompletedTasks
 } from "./utils/taskUtils";
-import {Card} from "./components/Card";
+import { Card } from "./components/Card";
+import { Layout } from "./components/Layout";
 
 // ==================== App ====================
 
@@ -239,10 +240,11 @@ function App() {
     const completedTasks = getCompletedTasks(tasks);
 
     return (
-        <div className="app">
+        <Layout>
 
-            <h1>📝 My Todo App</h1>
+            <div className="app">
 
+                <h1>📝 My Todo App</h1>
             {/* поиск */}
 
             <Card>
@@ -309,7 +311,9 @@ function App() {
                 />
             )}
 
-        </div>
+            </div>
+
+        </Layout>
     );
 }
 
