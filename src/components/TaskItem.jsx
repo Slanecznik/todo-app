@@ -1,6 +1,6 @@
-import { useState } from "react";
+import {memo, useState } from "react";
 
-function TaskItem(props) {
+export const TaskItem = memo(function TaskItem(props) {
     const [editedText, setEditedText] = useState(props.task.text);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -67,4 +67,4 @@ function TaskItem(props) {
     );
 }
 
-export default TaskItem;
+)
