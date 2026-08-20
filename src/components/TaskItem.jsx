@@ -4,10 +4,17 @@ export const TaskItem = memo(function TaskItem(props) {
     const [editedText, setEditedText] = useState(props.task.text);
     const [isEditing, setIsEditing] = useState(false);
 
-    const saveTask = () => {
-        props.editTask(props.task.id, editedText);
-        setIsEditing(false);
-    };
+        const saveTask = (e) => {
+
+            e.preventDefault();
+
+            props.editTask(
+                props.task.id,
+                editedText
+            );
+
+            setIsEditing(false);
+        };
 
     return (
         <div className="task">
@@ -20,22 +27,26 @@ export const TaskItem = memo(function TaskItem(props) {
 
             {
                 isEditing ? (
-                    <input
-                        value={editedText}
-                        onChange={(e) => setEditedText(e.target.value)}
-                        onKeyDown={(e) => {
+                    <form onSubmit={saveTask}>
 
-                            if (e.key === "Enter") {
-                                saveTask();
-                            }
+                        <input
+                            value={editedText}
+                            onChange={(e) => setEditedText(e.target.value)}
+                            onKeyDown={(e) => {
 
-                            if (e.key === "Escape") {
-                                setEditedText(props.task.text);
-                                setIsEditing(false);
-                            }
+                                if (e.key === "Escape") {
+                                    setEditedText(props.task.text);
+                                    setIsEditing(false);
+                                }
 
-                        }}
-                    />
+                            }}
+                        />
+
+                        <button type="submit">
+                            💾
+                        </button>
+
+                    </form>
                 ) : (
                     <span className={props.task.done ? "done" : ""}>
             {props.task.text}
