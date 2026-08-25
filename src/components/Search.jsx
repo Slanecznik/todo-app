@@ -1,8 +1,11 @@
-function Search(props) {
+function Search({
+                    search,
+                    setSearch
+                }) {
     return (
         <input
-            value={props.search}
-            onChange={(e) => props.setSearch(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Поиск задачи"
         />
     );

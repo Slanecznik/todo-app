@@ -1,26 +1,29 @@
-function FilterButtons(props) {
+function FilterButtons({
+                           filter,
+                           setFilter
+                       }) {
 
     return (
 
         <div className="filters">
 
             <button
-                className={props.filter === "all" ? "active-filter" : ""}
-                onClick={() => props.setFilter("all")}
+                className={filter === "all" ? "active-filter" : ""}
+                onClick={() => setFilter("all")}
             >
                 Все
             </button>
 
             <button
-                className={props.filter === "active" ? "active-filter" : ""}
-                onClick={() => props.setFilter("active")}
+                className={filter === "active" ? "active-filter" : ""}
+                onClick={() => setFilter("active")}
             >
                 Активные
             </button>
 
             <button
-                className={props.filter === "completed" ? "active-filter" : ""}
-                onClick={() => props.setFilter("completed")}
+                className={filter === "completed" ? "active-filter" : ""}
+                onClick={() => setFilter("completed")}
             >
                 Выполненные
             </button>
