@@ -1,15 +1,20 @@
 import {memo, useState } from "react";
 
-export const TaskItem = memo(function TaskItem(props) {
-    const [editedText, setEditedText] = useState(props.task.text);
+export const TaskItem = memo(function TaskItem({
+                                                   task,
+                                                   toggleTask,
+                                                   editTask,
+                                                   deleteTask
+                                               }) {
+    const [editedText, setEditedText] = useState(task.text);
     const [isEditing, setIsEditing] = useState(false);
 
         const saveTask = (e) => {
 
             e.preventDefault();
 
-            props.editTask(
-                props.task.id,
+            editTask(
+                task.id,
                 editedText
             );
 
@@ -21,8 +26,8 @@ export const TaskItem = memo(function TaskItem(props) {
 
             <input
                 type="checkbox"
-                checked={props.task.done}
-                onChange={() => props.toggleTask(props.task.id)}
+                checked={task.done}
+                onChange={() => toggleTask(task.id)}
             />
 
             {
@@ -35,7 +40,7 @@ export const TaskItem = memo(function TaskItem(props) {
                             onKeyDown={(e) => {
 
                                 if (e.key === "Escape") {
-                                    setEditedText(props.task.text);
+                                    setEditedText(task.text);
                                     setIsEditing(false);
                                 }
 
@@ -48,8 +53,8 @@ export const TaskItem = memo(function TaskItem(props) {
 
                     </form>
                 ) : (
-                    <span className={props.task.done ? "done" : ""}>
-            {props.task.text}
+                    <span className={task.done ? "done" : ""}>
+            {task.text}
         </span>
                 )
             }
@@ -69,7 +74,7 @@ export const TaskItem = memo(function TaskItem(props) {
             }
 
             <button
-                onClick={() => props.deleteTask(props.task.id)}
+                onClick={() => deleteTask(task.id)}
             >
                 ❌
             </button>

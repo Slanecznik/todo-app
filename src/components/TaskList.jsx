@@ -1,15 +1,20 @@
 import {TaskItem} from "./TaskItem";
 
-function TaskList(props) {
+function TaskList({
+                      tasks,
+                      deleteTask,
+                      toggleTask,
+                      editTask
+                  }) {
     return (
         <div>
-            {props.tasks.map((task) => (
+            {tasks.map((task) => (
                 <TaskItem
                     key={task.id}
                     task={task}
-                    deleteTask={props.deleteTask}
-                    toggleTask={props.toggleTask}
-                    editTask={props.editTask}
+                    deleteTask={deleteTask}
+                    toggleTask={toggleTask}
+                    editTask={editTask}
                 />
             ))}
         </div>
