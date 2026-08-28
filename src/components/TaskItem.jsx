@@ -60,11 +60,7 @@ export const TaskItem = memo(function TaskItem({
             }
 
             {
-                isEditing ? (
-                    <button onClick={saveTask}>
-                        💾
-                    </button>
-                ) : (
+                !isEditing && (
                     <button
                         onClick={() => setIsEditing(true)}
                     >
