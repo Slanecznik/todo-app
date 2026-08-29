@@ -1,11 +1,11 @@
 import {TaskItem} from "./TaskItem";
 
-function TaskList({
-                      tasks,
-                      deleteTask,
-                      toggleTask,
-                      editTask
-                  }) {
+export const TaskList = ({
+                             tasks,
+                             deleteTask,
+                             toggleTask,
+                             editTask
+                         }) => {
     return (
         <div>
             {tasks.map((task) => (
@@ -19,6 +19,4 @@ function TaskList({
             ))}
         </div>
     );
-}
-
-export default TaskList;
+};

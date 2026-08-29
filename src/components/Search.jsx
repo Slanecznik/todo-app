@@ -1,7 +1,7 @@
-function Search({
-                    search,
-                    setSearch
-                }) {
+export const Search = ({
+                           search,
+                           setSearch
+                       }) => {
     return (
         <input
             value={search}
@@ -9,6 +9,4 @@ function Search({
             placeholder="Поиск задачи"
         />
     );
-}
-
-export default Search;
+};

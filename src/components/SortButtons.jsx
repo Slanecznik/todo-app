@@ -1,6 +1,4 @@
-// ==================== SortButtons ====================
-
-function SortButtons({ sortType, setSortType }) {
+export const SortButtons = ({ sortType, setSortType }) => {
 
     return (
 
@@ -31,6 +29,4 @@ function SortButtons({ sortType, setSortType }) {
 
     );
 
-}
-
-export default SortButtons;
+};

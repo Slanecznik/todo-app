@@ -9,20 +9,22 @@ export const TaskItem = memo(function TaskItem({
     const [editedText, setEditedText] = useState(task.text);
     const [isEditing, setIsEditing] = useState(false);
 
-        const saveTask = (e) => {
-            e.preventDefault();
+    const saveTask = (e) => {
+        e.preventDefault();
 
-            if (editedText.trim() === "") {
-                return;
-            }
+        const trimmedText = editedText.trim();
 
-            editTask(
-                task.id,
-                editedText
-            );
+        if (trimmedText === "") {
+            return;
+        }
 
-            setIsEditing(false);
-        };
+        editTask(
+            task.id,
+            trimmedText
+        );
+
+        setIsEditing(false);
+    };
 
     return (
         <div className="task">
@@ -80,6 +82,4 @@ export const TaskItem = memo(function TaskItem({
 
         </div>
     );
-}
-
-)
+});

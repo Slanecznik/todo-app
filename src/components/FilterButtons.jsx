@@ -1,7 +1,7 @@
-function FilterButtons({
-                           filter,
-                           setFilter
-                       }) {
+export const FilterButtons = ({
+                                  filter,
+                                  setFilter
+                              }) => {
 
     return (
 
@@ -34,4 +34,3 @@ function FilterButtons({
 
 }
 
-export default FilterButtons;

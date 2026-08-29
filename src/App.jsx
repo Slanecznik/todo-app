@@ -1,10 +1,10 @@
 import {useState, useEffect, useRef, useMemo, useCallback} from "react";
-import Search from "./components/Search";
-import TaskList from "./components/TaskList";
-import FilterButtons from "./components/FilterButtons";
+import {Search} from "./components/Search";
+import {TaskList} from "./components/TaskList";
+import {FilterButtons} from "./components/FilterButtons";
 import {Statistics} from "./components/Statistics";
 import {AddTask} from "./components/AddTask";
-import SortButtons from "./components/SortButtons";
+import {SortButtons} from "./components/SortButtons";
 import {
     getTotalTasks,
     getActiveTasks,
@@ -15,7 +15,7 @@ import { Layout } from "./components/Layout";
 
 // ==================== App ====================
 
-function App() {
+export const App = () => {
 
     // Загружаем задачи из localStorage
 
@@ -59,13 +59,15 @@ function App() {
 
     const addTask = useCallback(() => {
 
-        if (text.trim() === "") return;
+        const trimmedText = text.trim();
+
+        if (trimmedText === "") return;
 
         const newTask = {
 
             id: Date.now(),
 
-            text: text,
+            text: trimmedText,
 
             done: false
 
@@ -315,5 +317,3 @@ function App() {
         </Layout>
     );
 }
-
-export default App;
