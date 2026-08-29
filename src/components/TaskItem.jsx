@@ -10,8 +10,11 @@ export const TaskItem = memo(function TaskItem({
     const [isEditing, setIsEditing] = useState(false);
 
         const saveTask = (e) => {
-
             e.preventDefault();
+
+            if (editedText.trim() === "") {
+                return;
+            }
 
             editTask(
                 task.id,
