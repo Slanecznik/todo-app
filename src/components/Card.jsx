@@ -1,4 +1,4 @@
-export function Card({ children }) {
+export const Card = ({ children }) => {
 
     return (
         <div className="card">

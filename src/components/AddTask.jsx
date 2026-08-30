@@ -1,11 +1,9 @@
-// ==================== AddTask ====================
-
-export function AddTask({
+export const AddTask =({
                             text,
                             setText,
                             addTask,
                             inputRef
-                        }) {
+                        }) => {
 
     // Обрабатываем отправку формы
     const handleSubmit = (e) => {

@@ -1,4 +1,4 @@
-export function Layout({ children }) {
+export const Layout = ({ children }) => {
 
     return (
         <div className="layout">
