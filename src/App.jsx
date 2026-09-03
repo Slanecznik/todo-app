@@ -17,7 +17,6 @@ import { Layout } from "./components/Layout";
 
 export const App = () => {
 
-    // Загружаем задачи из localStorage
 
     const [tasks, setTasks] = useState(
         JSON.parse(localStorage.getItem("tasks")) || []
@@ -31,10 +30,6 @@ export const App = () => {
 
     const [search, setSearch] = useState("");
 
-    // Какой фильтр сейчас выбран
-// all — показать все задачи
-// active — только невыполненные
-// completed — только выполненные
 
     const [filter, setFilter] = useState("all");
 
