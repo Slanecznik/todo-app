@@ -1,22 +1,29 @@
-export const AddTask =({
+export const AddTask = ({
                             text,
                             setText,
-                            addTask,
+                            dispatch,
                             inputRef
                         }) => {
 
-    // Обрабатываем отправку формы
     const handleSubmit = (e) => {
 
-        // Не даём браузеру перезагрузить страницу
         e.preventDefault();
 
-        // Вызываем существующую функцию добавления задачи
-        addTask();
+        const trimmedText = text.trim();
+
+        if (trimmedText === "") return;
+
+        dispatch({
+            type: "ADD_TASK",
+            payload: trimmedText
+        });
+
+        setText("");
+
+        inputRef.current.focus();
     };
 
     return (
-
         <form
             className="add-task"
             onSubmit={handleSubmit}
@@ -34,6 +41,5 @@ export const AddTask =({
             </button>
 
         </form>
-
     );
-}
+};
