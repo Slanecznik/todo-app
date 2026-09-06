@@ -1,4 +1,11 @@
-import {useState, useEffect, useRef, useMemo, useCallback} from "react";
+import {
+    useState,
+    useEffect,
+    useRef,
+    useMemo,
+    useCallback,
+    useReducer
+} from "react";
 import {Search} from "./components/Search";
 import {TaskList} from "./components/TaskList";
 import {FilterButtons} from "./components/FilterButtons";
@@ -12,13 +19,19 @@ import {
 } from "./utils/taskUtils";
 import { Card } from "./components/Card";
 import { Layout } from "./components/Layout";
-
+import {tasksReducer} from "./tasksReducer";
 // ==================== App ====================
 
 export const App = () => {
 
+    const [tasks, dispatch] = useReducer(
+        tasksReducer, // reducer — функция, которая решает,
+        // как изменять tasks
 
-    const [tasks, setTasks] = useState(
+        // Начальное состояние.
+        // При запуске приложения берём задачи из localStorage.
+        // Если там ничего нет — используем пустой массив.
+
         JSON.parse(localStorage.getItem("tasks")) || []
     );
 
