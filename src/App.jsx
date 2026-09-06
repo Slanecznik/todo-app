@@ -63,42 +63,6 @@ export const App = () => {
 
     }, [tasks]);
 
-    // ==================== Добавление ====================
-
-    const addTask = useCallback(() => {
-
-        const trimmedText = text.trim();
-
-        if (trimmedText === "") return;
-
-        const newTask = {
-
-            id: Date.now(),
-
-            text: trimmedText,
-
-            done: false
-
-        };
-
-        setTasks((currentTasks) => {
-
-            return [
-
-                ...currentTasks,
-
-                newTask
-
-            ];
-
-        });
-
-        setText("");
-
-        inputRef.current.focus();
-
-    }, [text]);
-
     // ==================== Удаление ====================
 
     const deleteTask = useCallback((taskId) => {
@@ -287,7 +251,7 @@ export const App = () => {
             <AddTask
                 text={text}
                 setText={setText}
-                addTask={addTask}
+                dispatch={dispatch}
                 inputRef={inputRef}
             />
 
