@@ -4,7 +4,7 @@ export const TaskItem = memo(function TaskItem({
                                                    task,
                                                    toggleTask,
                                                    editTask,
-                                                   deleteTask
+                                                   deleteTask,
                                                }) {
     const [editedText, setEditedText] = useState(task.text);
     const [isEditing, setIsEditing] = useState(false);

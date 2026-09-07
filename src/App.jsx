@@ -35,14 +35,10 @@ export const App = () => {
         JSON.parse(localStorage.getItem("tasks")) || []
     );
 
-    // Текст новой задачи
 
     const [text, setText] = useState("");
 
-    // Поиск
-
     const [search, setSearch] = useState("");
-
 
     const [filter, setFilter] = useState("all");
 
@@ -72,19 +68,12 @@ export const App = () => {
         );
 
         if (!isConfirmed) {
-
             return;
-
         }
 
-        setTasks((currentTasks) => {
-
-            return currentTasks.filter((task) => {
-
-                return task.id !== taskId;
-
-            });
-
+        dispatch({
+            type: "DELETE_TASK",
+            payload: taskId
         });
 
     }, []);
