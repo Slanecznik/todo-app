@@ -15,6 +15,33 @@ export const tasksReducer = (state, action) => {
                 (task) => task.id !== action.payload
             );
 
+        case "TOGGLE_TASK":
+            return state.map((task) => {
+                if (task.id === action.payload) {
+                    return {
+                        ...task,
+                        done: !task.done
+                    };
+                }
+
+                return task;
+            });
+
+        case "EDIT_TASK":
+            return state.map((task) => {
+                if (task.id === action.payload.id) {
+                    return {
+                        ...task,
+                        text: action.payload.text
+                    };
+                }
+
+                return task;
+            });
+
+        case "CLEAR_COMPLETED":
+            return state.filter((task) => !task.done);
+
         default:
             return state;
     }

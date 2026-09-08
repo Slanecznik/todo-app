@@ -79,65 +79,30 @@ export const App = () => {
     }, []);
 
     const clearCompleted = () => {
-        const activeTasks = tasks.filter((task) => !task.done);
-
-        setTasks(activeTasks);
+        dispatch({
+            type: "CLEAR_COMPLETED"
+        });
     };
 
     // ==================== Выполнение ====================
 
     const toggleTask = useCallback((taskId) => {
-
-        setTasks((currentTasks) => {
-
-            return currentTasks.map((task) => {
-
-                if (task.id === taskId) {
-
-                    return {
-
-                        ...task,
-
-                        done: !task.done
-
-                    };
-
-                }
-
-                return task;
-
-            });
-
+        dispatch({
+            type: "TOGGLE_TASK",
+            payload: taskId
         });
-
     }, []);
 
     // ==================== Редактирование ====================
 
     const editTask = useCallback((taskId, newText) => {
-
-        setTasks((currentTasks) => {
-
-            return currentTasks.map((task) => {
-
-                if (task.id === taskId) {
-
-                    return {
-
-                        ...task,
-
-                        text: newText
-
-                    };
-
-                }
-
-                return task;
-
-            });
-
+        dispatch({
+            type: "EDIT_TASK",
+            payload: {
+                id: taskId,
+                text: newText
+            }
         });
-
     }, []);
 
     // ==================== Поиск ====================
