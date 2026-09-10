@@ -17,24 +17,23 @@ import {
     getActiveTasks,
     getCompletedTasks
 } from "./utils/taskUtils";
-import { Card } from "./components/Card";
-import { Layout } from "./components/Layout";
+import {Card} from "./components/Card";
+import {Layout} from "./components/Layout";
 import {tasksReducer} from "./tasksReducer";
+import {TasksContext} from "./context/TasksContext";
 // ==================== App ====================
 
 export const App = () => {
 
     const [tasks, dispatch] = useReducer(
-        tasksReducer, // reducer — функция, которая решает,
-        // как изменять tasks
-
-        // Начальное состояние.
-        // При запуске приложения берём задачи из localStorage.
-        // Если там ничего нет — используем пустой массив.
-
+        tasksReducer,
         JSON.parse(localStorage.getItem("tasks")) || []
     );
 
+    const contextValue = {
+        tasks,
+        dispatch
+    };
 
     const [text, setText] = useState("");
 
@@ -168,78 +167,80 @@ export const App = () => {
     const completedTasks = getCompletedTasks(tasks);
 
     return (
-        <Layout>
+        <TasksContext.Provider value={contextValue}>
+            <Layout>
 
-            <div className="app">
+                <div className="app">
 
-            {/* поиск */}
+                    {/* поиск */}
 
-            <Card>
-                <Search
-                    search={search}
-                    setSearch={setSearch}
-                />
-            </Card>
+                    <Card>
+                        <Search
+                            search={search}
+                            setSearch={setSearch}
+                        />
+                    </Card>
 
-            <hr className="section-line"/>
+                    <hr className="section-line"/>
 
-            {/* Контейнер для кнопок фильтра */}
+                    {/* Контейнер для кнопок фильтра */}
 
-            <FilterButtons
-                filter={filter}
-                setFilter={setFilter}
-            />
+                    <FilterButtons
+                        filter={filter}
+                        setFilter={setFilter}
+                    />
 
-            <hr className="section-line"/>
+                    <hr className="section-line"/>
 
-            <SortButtons
-                sortType={sortType}
-                setSortType={setSortType}
-            />
+                    <SortButtons
+                        sortType={sortType}
+                        setSortType={setSortType}
+                    />
 
-            <hr className="section-line"/>
+                    <hr className="section-line"/>
 
 
-            {/* новая задача */}
+                    {/* новая задача */}
 
-            <AddTask
-                text={text}
-                setText={setText}
-                dispatch={dispatch}
-                inputRef={inputRef}
-            />
+                    <AddTask
+                        text={text}
+                        setText={setText}
+                        dispatch={dispatch}
+                        inputRef={inputRef}
+                    />
 
-            <hr className="section-line"/>
+                    <hr className="section-line"/>
 
-            <Card>
-                <Statistics
-                    totalTasks={totalTasks}
-                    activeTasks={activeTasks}
-                    completedTasks={completedTasks}
-                />
-            </Card>
+                    <Card>
+                        <Statistics
+                            totalTasks={totalTasks}
+                            activeTasks={activeTasks}
+                            completedTasks={completedTasks}
+                        />
+                    </Card>
 
-            <button onClick={clearCompleted}>
-                🗑 Очистить выполненные
-            </button>
+                    <button onClick={clearCompleted}>
+                        🗑 Очистить выполненные
+                    </button>
 
-            {/* список задач */}
+                    {/* список задач */}
 
-            {/* Если задач нет */}
+                    {/* Если задач нет */}
 
-            {filteredTasks.length === 0 ? (
-                <p>📝 Пока задач нет. Добавьте первую задачу.</p>
-            ) : (
-                <TaskList
-                    tasks={sortedTasks}
-                    deleteTask={deleteTask}
-                    toggleTask={toggleTask}
-                    editTask={editTask}
-                />
-            )}
+                    {filteredTasks.length === 0 ? (
+                        <p>📝 Пока задач нет. Добавьте первую задачу.</p>
+                    ) : (
+                        <TaskList
+                            tasks={sortedTasks}
+                            deleteTask={deleteTask}
+                            toggleTask={toggleTask}
+                            editTask={editTask}
+                        />
+                    )}
 
-            </div>
+                </div>
 
-        </Layout>
+            </Layout>
+        </TasksContext.Provider>
     );
 }
