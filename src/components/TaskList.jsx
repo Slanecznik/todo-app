@@ -1,11 +1,14 @@
-import {TaskItem} from "./TaskItem";
+import { useContext } from "react";
+import { TaskItem } from "./TaskItem";
+import { TasksContext } from "../context/TasksContext";
 
 export const TaskList = ({
-                             tasks,
                              deleteTask,
                              toggleTask,
                              editTask
                          }) => {
+    const { tasks } = useContext(TasksContext);
+
     return (
         <div>
             {tasks.map((task) => (
