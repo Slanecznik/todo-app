@@ -5,11 +5,8 @@ export const Statistics = memo(function Statistics({
                                                        activeTasks,
                                                        completedTasks
                                                    }) {
-
     return (
-
         <div className="stats">
-
             <div className="stat-card">
                 <h3>📋 Всего</h3>
                 <span>{totalTasks}</span>
@@ -24,9 +21,6 @@ export const Statistics = memo(function Statistics({
                 <h3>✅ Выполнено</h3>
                 <span>{completedTasks}</span>
             </div>
-
         </div>
-
     );
-
 });

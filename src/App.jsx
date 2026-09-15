@@ -205,7 +205,6 @@ export const App = () => {
                     <AddTask
                         text={text}
                         setText={setText}
-                        dispatch={dispatch}
                         inputRef={inputRef}
                     />
 
