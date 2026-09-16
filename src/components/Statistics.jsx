@@ -1,10 +1,18 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
+import { TasksContext } from "../context/TasksContext";
+import {
+    getTotalTasks,
+    getActiveTasks,
+    getCompletedTasks
+} from "../utils/taskUtils";
 
-export const Statistics = memo(function Statistics({
-                                                       totalTasks,
-                                                       activeTasks,
-                                                       completedTasks
-                                                   }) {
+export const Statistics = memo(function Statistics() {
+    const { tasks } = useContext(TasksContext);
+
+    const totalTasks = getTotalTasks(tasks);
+    const activeTasks = getActiveTasks(tasks);
+    const completedTasks = getCompletedTasks(tasks);
+
     return (
         <div className="stats">
             <div className="stat-card">

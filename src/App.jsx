@@ -12,11 +12,6 @@ import {FilterButtons} from "./components/FilterButtons";
 import {Statistics} from "./components/Statistics";
 import {AddTask} from "./components/AddTask";
 import {SortButtons} from "./components/SortButtons";
-import {
-    getTotalTasks,
-    getActiveTasks,
-    getCompletedTasks
-} from "./utils/taskUtils";
 import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";
 import {tasksReducer} from "./tasksReducer";
@@ -158,13 +153,6 @@ export const App = () => {
 
     }, [filteredTasks, sortType]);
 
-    // ==================== Статистика ====================
-
-    const totalTasks = getTotalTasks(tasks);
-
-    const activeTasks = getActiveTasks(tasks);
-
-    const completedTasks = getCompletedTasks(tasks);
 
     return (
         <TasksContext.Provider value={contextValue}>
@@ -211,11 +199,7 @@ export const App = () => {
                     <hr className="section-line"/>
 
                     <Card>
-                        <Statistics
-                            totalTasks={totalTasks}
-                            activeTasks={activeTasks}
-                            completedTasks={completedTasks}
-                        />
+                        <Statistics />
                     </Card>
 
                     <button onClick={clearCompleted}>
