@@ -25,13 +25,6 @@ export const App = () => {
         JSON.parse(localStorage.getItem("tasks")) || []
     );
 
-    const contextValue = {
-        tasks,
-        dispatch,
-        deleteTask,
-        toggleTask,
-        editTask
-    };
 
     const [text, setText] = useState("");
 
@@ -101,6 +94,14 @@ export const App = () => {
             }
         });
     }, []);
+
+    const contextValue = {
+        tasks,
+        dispatch,
+        deleteTask,
+        toggleTask,
+        editTask
+    };
 
     // ==================== Поиск ====================
 
@@ -202,7 +203,7 @@ export const App = () => {
                     <hr className="section-line"/>
 
                     <Card>
-                        <Statistics />
+                        <Statistics/>
                     </Card>
 
                     <button onClick={clearCompleted}>
