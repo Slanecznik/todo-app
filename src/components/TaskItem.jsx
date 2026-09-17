@@ -1,11 +1,13 @@
-import {memo, useState } from "react";
+import { memo, useContext, useState } from "react";
+import { TasksContext } from "../context/TasksContext";
 
-export const TaskItem = memo(function TaskItem({
-                                                   task,
-                                                   toggleTask,
-                                                   editTask,
-                                                   deleteTask,
-                                               }) {
+export const TaskItem = memo(function TaskItem({ task }) {
+    const {
+        deleteTask,
+        toggleTask,
+        editTask
+    } = useContext(TasksContext);
+
     const [editedText, setEditedText] = useState(task.text);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -59,8 +61,8 @@ export const TaskItem = memo(function TaskItem({
                     </form>
                 ) : (
                     <span className={task.done ? "done" : ""}>
-            {task.text}
-        </span>
+                        {task.text}
+                    </span>
                 )
             }
 

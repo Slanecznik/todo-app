@@ -27,7 +27,10 @@ export const App = () => {
 
     const contextValue = {
         tasks,
-        dispatch
+        dispatch,
+        deleteTask,
+        toggleTask,
+        editTask
     };
 
     const [text, setText] = useState("");
@@ -215,9 +218,6 @@ export const App = () => {
                     ) : (
                         <TaskList
                             tasks={sortedTasks}
-                            deleteTask={deleteTask}
-                            toggleTask={toggleTask}
-                            editTask={editTask}
                         />
                     )}
 
