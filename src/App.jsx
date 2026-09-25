@@ -3,8 +3,6 @@ import {
     useEffect,
     useRef,
     useMemo,
-    useCallback,
-    useReducer
 } from "react";
 import {Search} from "./components/Search";
 import {TaskList} from "./components/TaskList";
@@ -14,16 +12,19 @@ import {AddTask} from "./components/AddTask";
 import {SortButtons} from "./components/SortButtons";
 import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";
-import {tasksReducer} from "./tasksReducer";
 import {TasksContext} from "./context/TasksContext";
+import { useTasks } from "./hooks/useTasks";
 // ==================== App ====================
 
 export const App = () => {
 
-    const [tasks, dispatch] = useReducer(
-        tasksReducer,
-        JSON.parse(localStorage.getItem("tasks")) || []
-    );
+    const {
+        tasks,
+        dispatch,
+        deleteTask,
+        toggleTask,
+        editTask
+    } = useTasks();
 
 
     const [text, setText] = useState("");
@@ -49,24 +50,6 @@ export const App = () => {
 
     }, [tasks]);
 
-    // ==================== Удаление ====================
-
-    const deleteTask = useCallback((taskId) => {
-
-        const isConfirmed = window.confirm(
-            "Вы действительно хотите удалить эту задачу?"
-        );
-
-        if (!isConfirmed) {
-            return;
-        }
-
-        dispatch({
-            type: "DELETE_TASK",
-            payload: taskId
-        });
-
-    }, []);
 
     const clearCompleted = () => {
         dispatch({
@@ -74,26 +57,6 @@ export const App = () => {
         });
     };
 
-    // ==================== Выполнение ====================
-
-    const toggleTask = useCallback((taskId) => {
-        dispatch({
-            type: "TOGGLE_TASK",
-            payload: taskId
-        });
-    }, []);
-
-    // ==================== Редактирование ====================
-
-    const editTask = useCallback((taskId, newText) => {
-        dispatch({
-            type: "EDIT_TASK",
-            payload: {
-                id: taskId,
-                text: newText
-            }
-        });
-    }, []);
 
     const contextValue = {
         tasks,
