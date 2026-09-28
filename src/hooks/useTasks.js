@@ -7,6 +7,13 @@ export const useTasks = () => {
         JSON.parse(localStorage.getItem("tasks")) || []
     );
 
+    const addTask = useCallback((text) => {
+        dispatch({
+            type: "ADD_TASK",
+            payload: text
+        });
+    }, []);
+
     const deleteTask = useCallback((taskId) => {
         dispatch({
             type: "DELETE_TASK",
@@ -34,6 +41,7 @@ export const useTasks = () => {
     return {
         tasks,
         dispatch,
+        addTask,
         deleteTask,
         toggleTask,
         editTask

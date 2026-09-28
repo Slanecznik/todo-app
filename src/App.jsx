@@ -21,11 +21,20 @@ export const App = () => {
     const {
         tasks,
         dispatch,
+        addTask,
         deleteTask,
         toggleTask,
         editTask
     } = useTasks();
 
+    const contextValue = {
+        tasks,
+        dispatch,
+        addTask,
+        deleteTask,
+        toggleTask,
+        editTask
+    };
 
     const [text, setText] = useState("");
 
@@ -55,15 +64,6 @@ export const App = () => {
         dispatch({
             type: "CLEAR_COMPLETED"
         });
-    };
-
-
-    const contextValue = {
-        tasks,
-        dispatch,
-        deleteTask,
-        toggleTask,
-        editTask
     };
 
     // ==================== Поиск ====================
