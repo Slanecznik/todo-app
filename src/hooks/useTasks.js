@@ -40,7 +40,6 @@ export const useTasks = () => {
 
     return {
         tasks,
-        dispatch,
         addTask,
         deleteTask,
         toggleTask,

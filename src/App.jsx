@@ -20,7 +20,6 @@ export const App = () => {
 
     const {
         tasks,
-        dispatch,
         addTask,
         deleteTask,
         toggleTask,
@@ -29,7 +28,6 @@ export const App = () => {
 
     const contextValue = {
         tasks,
-        dispatch,
         addTask,
         deleteTask,
         toggleTask,
