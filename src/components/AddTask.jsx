@@ -7,7 +7,7 @@ export const AddTask = ({
                             inputRef
                         }) => {
 
-    const { dispatch } = useContext(TasksContext);
+    const { addTask } = useContext(TasksContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,10 +18,7 @@ export const AddTask = ({
             return;
         }
 
-        dispatch({
-            type: "ADD_TASK",
-            payload: trimmedText
-        });
+        addTask(trimmedText);
 
         setText("");
         inputRef.current?.focus();
