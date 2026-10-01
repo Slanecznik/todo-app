@@ -23,7 +23,8 @@ export const App = () => {
         addTask,
         deleteTask,
         toggleTask,
-        editTask
+        editTask,
+        clearCompleted
     } = useTasks();
 
     const contextValue = {
@@ -31,7 +32,8 @@ export const App = () => {
         addTask,
         deleteTask,
         toggleTask,
-        editTask
+        editTask,
+        clearCompleted
     };
 
     const [text, setText] = useState("");
@@ -56,13 +58,6 @@ export const App = () => {
         );
 
     }, [tasks]);
-
-
-    const clearCompleted = () => {
-        dispatch({
-            type: "CLEAR_COMPLETED"
-        });
-    };
 
     // ==================== Поиск ====================
 

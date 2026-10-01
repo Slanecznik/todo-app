@@ -38,11 +38,18 @@ export const useTasks = () => {
         });
     }, []);
 
+    const clearCompleted = useCallback(() => {
+        dispatch({
+            type: "CLEAR_COMPLETED"
+        });
+    }, []);
+
     return {
         tasks,
         addTask,
         deleteTask,
         toggleTask,
-        editTask
+        editTask,
+        clearCompleted
     };
 };
