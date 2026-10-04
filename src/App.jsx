@@ -13,8 +13,7 @@ import {SortButtons} from "./components/SortButtons";
 import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";
 import {TasksContext} from "./context/TasksContext";
-import { useTasks } from "./hooks/useTasks";
-// ==================== App ====================
+import {useTasks} from "./hooks/useTasks";
 
 export const App = () => {
 
@@ -48,8 +47,6 @@ export const App = () => {
 
     const inputRef = useRef(null);
 
-    // Сохраняем задачи после каждого изменения
-
     useEffect(() => {
 
         localStorage.setItem(
@@ -58,8 +55,6 @@ export const App = () => {
         );
 
     }, [tasks]);
-
-    // ==================== Поиск ====================
 
     const searchedTasks = useMemo(() => {
 
@@ -113,7 +108,6 @@ export const App = () => {
 
     }, [filteredTasks, sortType]);
 
-
     return (
         <TasksContext.Provider value={contextValue}>
             <Layout>
@@ -131,8 +125,6 @@ export const App = () => {
 
                     <hr className="section-line"/>
 
-                    {/* Контейнер для кнопок фильтра */}
-
                     <FilterButtons
                         filter={filter}
                         setFilter={setFilter}
@@ -146,9 +138,6 @@ export const App = () => {
                     />
 
                     <hr className="section-line"/>
-
-
-                    {/* новая задача */}
 
                     <AddTask
                         text={text}
@@ -165,10 +154,6 @@ export const App = () => {
                     <button onClick={clearCompleted}>
                         🗑 Очистить выполненные
                     </button>
-
-                    {/* список задач */}
-
-                    {/* Если задач нет */}
 
                     {filteredTasks.length === 0 ? (
                         <p>📝 Пока задач нет. Добавьте первую задачу.</p>
