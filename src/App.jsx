@@ -13,7 +13,7 @@ import {SortButtons} from "./components/SortButtons";
 import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";
 import {TasksContext} from "./context/TasksContext";
-import {useTasks} from "./hooks/useTasks";
+import {useTasks} from "./hooks/useTasks.ts";
 
 export const App = () => {
 
