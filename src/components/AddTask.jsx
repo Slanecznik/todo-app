@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TasksContext } from "../context/TasksContext";
+import { TasksContext } from "../context/TasksContext.tsx";
 
 export const AddTask = ({
                             text,

@@ -1,5 +1,5 @@
 import { memo, useContext, useState } from "react";
-import { TasksContext } from "../context/TasksContext";
+import { TasksContext } from "../context/TasksContext.tsx";
 
 export const TaskItem = memo(function TaskItem({ task }) {
     const {

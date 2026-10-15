@@ -12,7 +12,7 @@ import {AddTask} from "./components/AddTask";
 import {SortButtons} from "./components/SortButtons";
 import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";
-import {TasksContext} from "./context/TasksContext";
+import {TasksContext} from "./context/TasksContext.tsx";
 import {useTasks} from "./hooks/useTasks.ts";
 
 export const App = () => {

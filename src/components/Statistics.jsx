@@ -1,5 +1,5 @@
 import { memo, useContext } from "react";
-import { TasksContext } from "../context/TasksContext";
+import { TasksContext } from "../context/TasksContext.tsx";
 import {
     getTotalTasks,
     getActiveTasks,
