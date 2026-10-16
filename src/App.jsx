@@ -5,7 +5,7 @@ import {
     useMemo,
 } from "react";
 import {Search} from "./components/Search";
-import {TaskList} from "./components/TaskList";
+import {TaskList} from "./components/TaskList.tsx";
 import {FilterButtons} from "./components/FilterButtons";
 import {Statistics} from "./components/Statistics";
 import {AddTask} from "./components/AddTask";
