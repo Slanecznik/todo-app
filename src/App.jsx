@@ -8,7 +8,7 @@ import {Search} from "./components/Search";
 import {TaskList} from "./components/TaskList.tsx";
 import {FilterButtons} from "./components/FilterButtons";
 import {Statistics} from "./components/Statistics";
-import {AddTask} from "./components/AddTask";
+import {AddTask} from "./components/AddTask.tsx";
 import {SortButtons} from "./components/SortButtons";
 import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";

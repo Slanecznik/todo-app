@@ -1,15 +1,35 @@
+
 import { useContext } from "react";
-import { TasksContext } from "../context/TasksContext.tsx";
+import type {
+    Dispatch,
+    FormEvent,
+    RefObject,
+    SetStateAction
+} from "react";
+import { TasksContext } from "../context/TasksContext";
+
+type AddTaskProps = {
+    text: string;
+    setText: Dispatch<SetStateAction<string>>;
+    inputRef: RefObject<HTMLInputElement | null>;
+};
 
 export const AddTask = ({
                             text,
                             setText,
                             inputRef
-                        }) => {
+                        }: AddTaskProps) => {
+    const context = useContext(TasksContext);
 
-    const { addTask } = useContext(TasksContext);
+    if (!context) {
+        throw new Error(
+            "AddTask must be used within TasksContext.Provider"
+        );
+    }
 
-    const handleSubmit = (e) => {
+    const { addTask } = context;
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const trimmedText = text.trim();
@@ -19,7 +39,6 @@ export const AddTask = ({
         }
 
         addTask(trimmedText);
-
         setText("");
         inputRef.current?.focus();
     };
