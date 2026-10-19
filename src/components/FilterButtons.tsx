@@ -1,12 +1,19 @@
+
+import type { Dispatch, SetStateAction } from "react";
+
+type Filter = "all" | "active" | "completed";
+
+type FilterButtonsProps = {
+    filter: Filter;
+    setFilter: Dispatch<SetStateAction<Filter>>;
+};
+
 export const FilterButtons = ({
                                   filter,
                                   setFilter
-                              }) => {
-
+                              }: FilterButtonsProps) => {
     return (
-
         <div className="filters">
-
             <button
                 className={filter === "all" ? "active-filter" : ""}
                 onClick={() => setFilter("all")}
@@ -27,10 +34,6 @@ export const FilterButtons = ({
             >
                 Выполненные
             </button>
-
         </div>
-
     );
-
-}
-
+};

@@ -6,7 +6,7 @@ import {
 } from "react";
 import {Search} from "./components/Search";
 import {TaskList} from "./components/TaskList.tsx";
-import {FilterButtons} from "./components/FilterButtons";
+import {FilterButtons} from "./components/FilterButtons.tsx";
 import {Statistics} from "./components/Statistics";
 import {AddTask} from "./components/AddTask.tsx";
 import {SortButtons} from "./components/SortButtons";
