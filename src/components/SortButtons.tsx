@@ -1,9 +1,19 @@
-export const SortButtons = ({ sortType, setSortType }) => {
 
+import type { Dispatch, SetStateAction } from "react";
+
+type SortType = "new" | "old" | "abc";
+
+type SortButtonsProps = {
+    sortType: SortType;
+    setSortType: Dispatch<SetStateAction<SortType>>;
+};
+
+export const SortButtons = ({
+                                sortType,
+                                setSortType
+                            }: SortButtonsProps) => {
     return (
-
         <div className="filters">
-
             <button
                 className={sortType === "new" ? "active-filter" : ""}
                 onClick={() => setSortType("new")}
@@ -24,9 +34,6 @@ export const SortButtons = ({ sortType, setSortType }) => {
             >
                 🔤 А-Я
             </button>
-
         </div>
-
     );
-
 };
