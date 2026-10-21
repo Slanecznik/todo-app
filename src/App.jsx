@@ -4,7 +4,7 @@ import {
     useRef,
     useMemo,
 } from "react";
-import {Search} from "./components/Search";
+import {Search} from "./components/Search.tsx";
 import {TaskList} from "./components/TaskList.tsx";
 import {FilterButtons} from "./components/FilterButtons.tsx";
 import {Statistics} from "./components/Statistics";
