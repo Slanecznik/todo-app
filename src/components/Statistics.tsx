@@ -1,5 +1,5 @@
 import { memo, useContext } from "react";
-import { TasksContext } from "../context/TasksContext.tsx";
+import { TasksContext } from "../context/TasksContext";
 import {
     getTotalTasks,
     getActiveTasks,
@@ -7,7 +7,15 @@ import {
 } from "../utils/taskUtils";
 
 export const Statistics = memo(function Statistics() {
-    const { tasks } = useContext(TasksContext);
+    const context = useContext(TasksContext);
+
+    if (!context) {
+        throw new Error(
+            "Statistics must be used within TasksContext.Provider"
+        );
+    }
+
+    const { tasks } = context;
 
     const totalTasks = getTotalTasks(tasks);
     const activeTasks = getActiveTasks(tasks);
