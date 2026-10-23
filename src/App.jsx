@@ -10,7 +10,7 @@ import {FilterButtons} from "./components/FilterButtons.tsx";
 import {Statistics} from "./components/Statistics.tsx";
 import {AddTask} from "./components/AddTask.tsx";
 import {SortButtons} from "./components/SortButtons.tsx";
-import {Card} from "./components/Card";
+import {Card} from "./components/Card.tsx";
 import {Layout} from "./components/Layout";
 import {TasksContext} from "./context/TasksContext.tsx";
 import {useTasks} from "./hooks/useTasks.ts";
