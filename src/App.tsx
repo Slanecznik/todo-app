@@ -4,26 +4,30 @@ import {
     useRef,
     useMemo,
 } from "react";
-import {Search} from "./components/Search.tsx";
-import {TaskList} from "./components/TaskList.tsx";
-import {FilterButtons} from "./components/FilterButtons.tsx";
-import {Statistics} from "./components/Statistics.tsx";
-import {AddTask} from "./components/AddTask.tsx";
-import {SortButtons} from "./components/SortButtons.tsx";
-import {Card} from "./components/Card.tsx";
-import {Layout} from "./components/Layout.tsx";
-import {TasksContext} from "./context/TasksContext.tsx";
-import {useTasks} from "./hooks/useTasks.ts";
+
+import { Search } from "./components/Search";
+import { TaskList } from "./components/TaskList.tsx";
+import { FilterButtons } from "./components/FilterButtons";
+import { Statistics } from "./components/Statistics";
+import { AddTask } from "./components/AddTask.tsx";
+import { SortButtons } from "./components/SortButtons";
+import { Card } from "./components/Card";
+import { Layout } from "./components/Layout";
+import { TasksContext } from "./context/TasksContext.tsx";
+import { useTasks } from "./hooks/useTasks.ts";
+
+type FilterType = "all" | "active" | "completed";
+
+type SortType = "new" | "old" | "abc";
 
 export const App = () => {
-
     const {
         tasks,
         addTask,
         deleteTask,
         toggleTask,
         editTask,
-        clearCompleted
+        clearCompleted,
     } = useTasks();
 
     const contextValue = {
@@ -32,62 +36,45 @@ export const App = () => {
         deleteTask,
         toggleTask,
         editTask,
-        clearCompleted
+        clearCompleted,
     };
 
-    const [text, setText] = useState("");
+    const [text, setText] = useState<string>("");
+    const [search, setSearch] = useState<string>("");
 
-    const [search, setSearch] = useState("");
+    const [filter, setFilter] = useState<FilterType>("all");
+    const [sortType, setSortType] = useState<SortType>("new");
 
-    const [filter, setFilter] = useState("all");
-
-    const [sortType, setSortType] = useState("new");
-
-    // Ссылка на input
-
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-
         localStorage.setItem(
             "tasks",
             JSON.stringify(tasks)
         );
-
     }, [tasks]);
 
     const searchedTasks = useMemo(() => {
-
-        return tasks.filter((task) => {
-
-            return task.text
+        return tasks.filter((task) =>
+            task.text
                 .toLowerCase()
-                .includes(search.toLowerCase());
-
-        });
-
+                .includes(search.toLowerCase())
+        );
     }, [tasks, search]);
 
     const filteredTasks = useMemo(() => {
-
         if (filter === "active") {
-
             return searchedTasks.filter((task) => !task.done);
-
         }
 
         if (filter === "completed") {
-
             return searchedTasks.filter((task) => task.done);
-
         }
 
         return searchedTasks;
-
     }, [searchedTasks, filter]);
 
     const sortedTasks = useMemo(() => {
-
         const result = [...filteredTasks];
 
         if (sortType === "new") {
@@ -105,17 +92,12 @@ export const App = () => {
         }
 
         return result;
-
     }, [filteredTasks, sortType]);
 
     return (
         <TasksContext.Provider value={contextValue}>
             <Layout>
-
                 <div className="app">
-
-                    {/* поиск */}
-
                     <Card>
                         <Search
                             search={search}
@@ -123,21 +105,21 @@ export const App = () => {
                         />
                     </Card>
 
-                    <hr className="section-line"/>
+                    <hr className="section-line" />
 
                     <FilterButtons
                         filter={filter}
                         setFilter={setFilter}
                     />
 
-                    <hr className="section-line"/>
+                    <hr className="section-line" />
 
                     <SortButtons
                         sortType={sortType}
                         setSortType={setSortType}
                     />
 
-                    <hr className="section-line"/>
+                    <hr className="section-line" />
 
                     <AddTask
                         text={text}
@@ -145,10 +127,10 @@ export const App = () => {
                         inputRef={inputRef}
                     />
 
-                    <hr className="section-line"/>
+                    <hr className="section-line" />
 
                     <Card>
-                        <Statistics/>
+                        <Statistics />
                     </Card>
 
                     <button onClick={clearCompleted}>
@@ -156,16 +138,16 @@ export const App = () => {
                     </button>
 
                     {filteredTasks.length === 0 ? (
-                        <p>📝 Пока задач нет. Добавьте первую задачу.</p>
+                        <p>
+                            📝 Пока задач нет. Добавьте первую задачу.
+                        </p>
                     ) : (
                         <TaskList
                             tasks={sortedTasks}
                         />
                     )}
-
                 </div>
-
             </Layout>
         </TasksContext.Provider>
     );
-}
+};
