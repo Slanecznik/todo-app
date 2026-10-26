@@ -2,13 +2,38 @@
 import { useReducer, useCallback } from "react";
 import { tasksReducer, type Task } from "../tasksReducer";
 
+function loadTasks(): Task[] {
+    const savedTasks = localStorage.getItem("tasks")
+
+    if (!savedTasks) {
+        return []
+    }
+
+    try {
+        const parsed: unknown = JSON.parse(savedTasks)
+
+        if (!Array.isArray(parsed)) {
+            return []
+        }
+
+        return parsed.filter(
+            (task): task is Task =>
+                typeof task.id === "number" &&
+                typeof task.text === "string" &&
+                typeof task.done === "boolean"
+        )
+    } catch {
+        return []
+    }
+}
+
 export const useTasks = () => {
+
     const [tasks, dispatch] = useReducer(
         tasksReducer,
-        JSON.parse(
-            localStorage.getItem("tasks") || "[]"
-        ) as Task[]
+        loadTasks()
     );
+
 
     const addTask = useCallback((text: string): void => {
         dispatch({
