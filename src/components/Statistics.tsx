@@ -4,7 +4,7 @@ import {
     getTotalTasks,
     getActiveTasks,
     getCompletedTasks
-} from "../utils/taskUtils";
+} from "../utils/taskUtils.ts";
 
 export const Statistics = memo(function Statistics() {
     const context = useContext(TasksContext);

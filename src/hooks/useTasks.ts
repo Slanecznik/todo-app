@@ -2,30 +2,42 @@
 import { useReducer, useCallback } from "react";
 import { tasksReducer, type Task } from "../tasksReducer";
 
-function loadTasks(): Task[] {
-    const savedTasks = localStorage.getItem("tasks")
 
-    if (!savedTasks) {
-        return []
+function isTask(value: unknown): value is Task {
+    if (typeof value !== "object" || value === null) {
+        return false;
     }
 
-    try {
-        const parsed: unknown = JSON.parse(savedTasks)
+    const task = value as Record<string, unknown>;
 
-        if (!Array.isArray(parsed)) {
-            return []
+    return (
+        typeof task.id === "number" &&
+        Number.isFinite(task.id) &&
+        typeof task.text === "string" &&
+        typeof task.done === "boolean"
+    );
+}
+
+function loadTasks(): Task[] {
+    try {
+        const savedTasks = localStorage.getItem("tasks");
+
+        if (!savedTasks) {
+            return [];
         }
 
-        return parsed.filter(
-            (task): task is Task =>
-                typeof task.id === "number" &&
-                typeof task.text === "string" &&
-                typeof task.done === "boolean"
-        )
+        const parsed: unknown = JSON.parse(savedTasks);
+
+        if (!Array.isArray(parsed)) {
+            return [];
+        }
+
+        return parsed.filter(isTask);
     } catch {
-        return []
+        return [];
     }
 }
+
 
 export const useTasks = () => {
 
