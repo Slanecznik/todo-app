@@ -5,16 +5,19 @@ import {
     useMemo,
 } from "react";
 
-import { Search } from "./components/Search";
-import { TaskList } from "./components/TaskList.tsx";
-import { FilterButtons } from "./components/FilterButtons";
-import { Statistics } from "./components/Statistics";
-import { AddTask } from "./components/AddTask.tsx";
-import { SortButtons } from "./components/SortButtons";
-import { Card } from "./components/Card";
-import { Layout } from "./components/Layout";
-import { TasksContext } from "./context/TasksContext.tsx";
-import { useTasks } from "./hooks/useTasks.ts";
+import {Search} from "./components/Search";
+import {TaskList} from "./components/TaskList.tsx";
+import {FilterButtons} from "./components/FilterButtons";
+import {Statistics} from "./components/Statistics";
+import {AddTask} from "./components/AddTask.tsx";
+import {SortButtons} from "./components/SortButtons";
+import {Card} from "./components/Card";
+import {Layout} from "./components/Layout";
+import {TasksContext} from "./context/TasksContext.tsx";
+import {useTasks} from "./hooks/useTasks.ts";
+import {Routes, Route} from "react-router";
+// import {HomePage} from "./pages/HomePage.tsx";
+import {StatisticsPage} from "./pages/StatisticsPage.tsx";
 
 type FilterType = "all" | "active" | "completed";
 
@@ -97,56 +100,67 @@ export const App = () => {
     return (
         <TasksContext.Provider value={contextValue}>
             <Layout>
-                <div className="app">
-                    <Card>
-                        <Search
-                            search={search}
-                            setSearch={setSearch}
-                        />
-                    </Card>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <div className="app">
+                                <Card>
+                                    <Search
+                                        search={search}
+                                        setSearch={setSearch}
+                                    />
+                                </Card>
 
-                    <hr className="section-line" />
+                                <hr className="section-line"/>
 
-                    <FilterButtons
-                        filter={filter}
-                        setFilter={setFilter}
+                                <FilterButtons
+                                    filter={filter}
+                                    setFilter={setFilter}
+                                />
+
+                                <hr className="section-line"/>
+
+                                <SortButtons
+                                    sortType={sortType}
+                                    setSortType={setSortType}
+                                />
+
+                                <hr className="section-line"/>
+
+                                <AddTask
+                                    text={text}
+                                    setText={setText}
+                                    inputRef={inputRef}
+                                />
+
+                                <hr className="section-line"/>
+
+                                <Card>
+                                    <Statistics/>
+                                </Card>
+
+                                <button onClick={clearCompleted}>
+                                    🗑 Очистить выполненные
+                                </button>
+
+                                {filteredTasks.length === 0 ? (
+                                    <p>
+                                        📝 Пока задач нет. Добавьте первую задачу.
+                                    </p>
+                                ) : (
+                                    <TaskList
+                                        tasks={sortedTasks}
+                                    />
+                                )}
+                            </div>
+                        }
                     />
-
-                    <hr className="section-line" />
-
-                    <SortButtons
-                        sortType={sortType}
-                        setSortType={setSortType}
+                    <Route
+                        path="/statistics"
+                        element={<StatisticsPage/>}
                     />
-
-                    <hr className="section-line" />
-
-                    <AddTask
-                        text={text}
-                        setText={setText}
-                        inputRef={inputRef}
-                    />
-
-                    <hr className="section-line" />
-
-                    <Card>
-                        <Statistics />
-                    </Card>
-
-                    <button onClick={clearCompleted}>
-                        🗑 Очистить выполненные
-                    </button>
-
-                    {filteredTasks.length === 0 ? (
-                        <p>
-                            📝 Пока задач нет. Добавьте первую задачу.
-                        </p>
-                    ) : (
-                        <TaskList
-                            tasks={sortedTasks}
-                        />
-                    )}
-                </div>
+                </Routes>
             </Layout>
         </TasksContext.Provider>
     );
