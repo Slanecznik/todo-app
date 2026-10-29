@@ -15,7 +15,7 @@ import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";
 import {TasksContext} from "./context/TasksContext.tsx";
 import {useTasks} from "./hooks/useTasks.ts";
-import {Routes, Route} from "react-router";
+import { Link, Routes, Route } from "react-router";
 // import {HomePage} from "./pages/HomePage.tsx";
 import {StatisticsPage} from "./pages/StatisticsPage.tsx";
 
@@ -100,6 +100,12 @@ export const App = () => {
     return (
         <TasksContext.Provider value={contextValue}>
             <Layout>
+                <nav>
+                    <Link to="/">Главная</Link>
+                    {" | "}
+                    <Link to="/statistics">Статистика</Link>
+                </nav>
+
                 <Routes>
                     <Route
                         path="/"
