@@ -18,6 +18,7 @@ import {useTasks} from "./hooks/useTasks.ts";
 import { Link, Routes, Route } from "react-router";
 // import {HomePage} from "./pages/HomePage.tsx";
 import {StatisticsPage} from "./pages/StatisticsPage.tsx";
+import { TaskDetailsPage } from "./pages/TaskDetailsPage";
 
 type FilterType = "all" | "active" | "completed";
 
@@ -165,6 +166,10 @@ export const App = () => {
                     <Route
                         path="/statistics"
                         element={<StatisticsPage/>}
+                    />
+                    <Route
+                        path="/tasks/:id"
+                        element={<TaskDetailsPage />}
                     />
                 </Routes>
             </Layout>
