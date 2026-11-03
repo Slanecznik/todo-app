@@ -3,6 +3,7 @@ import { memo, useContext, useState } from "react";
 import type { FormEvent, KeyboardEvent } from "react";
 import { TasksContext } from "../context/TasksContext";
 import type { Task } from "../tasksReducer";
+import { Link } from "react-router";
 
 type TaskItemProps = {
     task: Task;
