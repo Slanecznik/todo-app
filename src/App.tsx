@@ -15,7 +15,12 @@ import {Card} from "./components/Card";
 import {Layout} from "./components/Layout";
 import {TasksContext} from "./context/TasksContext.tsx";
 import {useTasks} from "./hooks/useTasks.ts";
-import { Link, Routes, Route } from "react-router";
+import {
+    Link,
+    Routes,
+    Route,
+    useSearchParams,
+} from "react-router";
 // import {HomePage} from "./pages/HomePage.tsx";
 import {StatisticsPage} from "./pages/StatisticsPage.tsx";
 import { TaskDetailsPage } from "./pages/TaskDetailsPage";
@@ -44,7 +49,23 @@ export const App = () => {
     };
 
     const [text, setText] = useState<string>("");
-    const [search, setSearch] = useState<string>("");
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const search = searchParams.get("search") ?? "";
+
+    const setSearch = (value: string) => {
+        setSearchParams((prev) => {
+            const next = new URLSearchParams(prev);
+
+            if (value) {
+                next.set("search", value);
+            } else {
+                next.delete("search");
+            }
+
+            return next;
+        }, { replace: true });
+    };
 
     const [filter, setFilter] = useState<FilterType>("all");
     const [sortType, setSortType] = useState<SortType>("new");

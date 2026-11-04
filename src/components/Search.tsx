@@ -1,8 +1,6 @@
-import type { Dispatch, SetStateAction } from "react";
-
 type SearchProps = {
     search: string;
-    setSearch: Dispatch<SetStateAction<string>>;
+    setSearch: (value: string) => void;
 };
 
 export const Search = ({
