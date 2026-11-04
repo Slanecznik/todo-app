@@ -1,9 +1,8 @@
-
-import { memo, useContext, useState } from "react";
-import type { FormEvent, KeyboardEvent } from "react";
-import { TasksContext } from "../context/TasksContext";
-import type { Task } from "../tasksReducer";
-import { Link } from "react-router";
+import {memo, useContext, useState} from "react";
+import type {FormEvent, KeyboardEvent} from "react";
+import {TasksContext} from "../context/TasksContext";
+import type {Task} from "../tasksReducer";
+import {Link} from "react-router";
 
 type TaskItemProps = {
     task: Task;
@@ -18,7 +17,7 @@ export const TaskItem = memo(function TaskItem({
         throw new Error("TaskItem must be used within TasksContext.Provider");
     }
 
-    const { deleteTask, toggleTask, editTask } = context;
+    const {deleteTask, toggleTask, editTask} = context;
 
     const [editedText, setEditedText] = useState(task.text);
     const [isEditing, setIsEditing] = useState(false);
@@ -62,9 +61,11 @@ export const TaskItem = memo(function TaskItem({
                     <button type="submit">💾</button>
                 </form>
             ) : (
-                <span className={task.done ? "done" : ""}>
-                    {task.text}
-                </span>
+                <Link to={`/tasks/${task.id}`}>
+    <span className={task.done ? "done" : ""}>
+        {task.text}
+    </span>
+                </Link>
             )}
 
             {!isEditing && (
