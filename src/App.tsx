@@ -16,7 +16,6 @@ import {Layout} from "./components/Layout";
 import {TasksContext} from "./context/TasksContext.tsx";
 import {useTasks} from "./hooks/useTasks.ts";
 import {
-    Link,
     Routes,
     Route,
     useSearchParams,
@@ -121,16 +120,10 @@ export const App = () => {
 
     return (
         <TasksContext.Provider value={contextValue}>
-            <Layout>
-                <nav>
-                    <Link to="/">Главная</Link>
-                    {" | "}
-                    <Link to="/statistics">Статистика</Link>
-                </nav>
-
-                <Routes>
+            <Routes>
+                <Route element={<Layout />}>
                     <Route
-                        path="/"
+                        index
                         element={
                             <div className="app">
                                 <Card>
@@ -192,8 +185,8 @@ export const App = () => {
                         path="/tasks/:id"
                         element={<TaskDetailsPage />}
                     />
-                </Routes>
-            </Layout>
+                </Route>
+            </Routes>
         </TasksContext.Provider>
     );
 };
