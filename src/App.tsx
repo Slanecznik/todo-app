@@ -23,6 +23,7 @@ import {
 // import {HomePage} from "./pages/HomePage.tsx";
 import {StatisticsPage} from "./pages/StatisticsPage.tsx";
 import { TaskDetailsPage } from "./pages/TaskDetailsPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 type FilterType = "all" | "active" | "completed";
 
@@ -185,6 +186,7 @@ export const App = () => {
                         path="/tasks/:id"
                         element={<TaskDetailsPage />}
                     />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
         </TasksContext.Provider>
