@@ -22,8 +22,9 @@ import {
 } from "react-router";
 // import {HomePage} from "./pages/HomePage.tsx";
 import {StatisticsPage} from "./pages/StatisticsPage.tsx";
-import { TaskDetailsPage } from "./pages/TaskDetailsPage";
-import { NotFoundPage } from "./pages/NotFoundPage";
+import {TaskDetailsPage} from "./pages/TaskDetailsPage";
+import {NotFoundPage} from "./pages/NotFoundPage";
+import {ErrorPage} from "./pages/ErrorPage.tsx";
 
 type FilterType = "all" | "active" | "completed";
 
@@ -64,7 +65,7 @@ export const App = () => {
             }
 
             return next;
-        }, { replace: true });
+        }, {replace: true});
     };
 
     const [filter, setFilter] = useState<FilterType>("all");
@@ -122,7 +123,8 @@ export const App = () => {
     return (
         <TasksContext.Provider value={contextValue}>
             <Routes>
-                <Route element={<Layout />}>
+                <Route element={<Layout/>}>
+                    errorElement={<ErrorPage/>}
                     <Route
                         index
                         element={
@@ -184,9 +186,9 @@ export const App = () => {
                     />
                     <Route
                         path="/tasks/:id"
-                        element={<TaskDetailsPage />}
+                        element={<TaskDetailsPage/>}
                     />
-                    <Route path="*" element={<NotFoundPage />} />
+                    <Route path="*" element={<NotFoundPage/>}/>
                 </Route>
             </Routes>
         </TasksContext.Provider>
