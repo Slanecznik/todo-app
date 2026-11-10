@@ -1,15 +1,21 @@
-import { useNavigate } from "react-router";
-import { Statistics } from "../components/Statistics";
 
-export function StatisticsPage() {
-    const navigate = useNavigate();
+import { useRevalidator } from "react-router";
+
+export const StatisticsPage = () => {
+    const revalidator = useRevalidator();
+
     return (
-        <section>
-            <h1>Статистика задач</h1>
-            <Statistics />
-            <button onClick={() => navigate("/")}>
-                Вернуться к задачам
+        <div>
+            <h2>Статистика</h2>
+
+            <button
+                onClick={() => revalidator.revalidate()}
+                disabled={revalidator.state === "loading"}
+            >
+                {revalidator.state === "loading"
+                    ? "Обновление..."
+                    : "Обновить данные"}
             </button>
-        </section>
+        </div>
     );
-}
+};
