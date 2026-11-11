@@ -24,7 +24,7 @@ import {
 import {StatisticsPage} from "./pages/StatisticsPage.tsx";
 import {TaskDetailsPage} from "./pages/TaskDetailsPage";
 import {NotFoundPage} from "./pages/NotFoundPage";
-import {ErrorPage} from "./pages/ErrorPage.tsx";
+// import {ErrorPage} from "./pages/ErrorPage.tsx";
 
 type FilterType = "all" | "active" | "completed";
 
@@ -124,7 +124,7 @@ export const App = () => {
         <TasksContext.Provider value={contextValue}>
             <Routes>
                 <Route element={<Layout/>}>
-                    errorElement={<ErrorPage/>}
+                    {/*errorElement={<ErrorPage/>}*/}
                     <Route
                         index
                         element={

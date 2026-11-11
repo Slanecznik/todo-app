@@ -1,21 +1,35 @@
 
-import { useRevalidator } from "react-router";
+// import { useRevalidator } from "react-router";
+
+
+import { Statistics } from "../components/Statistics";
 
 export const StatisticsPage = () => {
-    const revalidator = useRevalidator();
-
     return (
         <div>
             <h2>Статистика</h2>
 
-            <button
-                onClick={() => revalidator.revalidate()}
-                disabled={revalidator.state === "loading"}
-            >
-                {revalidator.state === "loading"
-                    ? "Обновление..."
-                    : "Обновить данные"}
-            </button>
+            <Statistics />
         </div>
     );
 };
+
+
+// export const StatisticsPage = () => {
+//     const revalidator = useRevalidator();
+//
+//     return (
+//         <div>
+//             <h2>Статистика</h2>
+//
+//             <button
+//                 onClick={() => revalidator.revalidate()}
+//                 disabled={revalidator.state === "loading"}
+//             >
+//                 {revalidator.state === "loading"
+//                     ? "Обновление..."
+//                     : "Обновить данные"}
+//             </button>
+//         </div>
+//     );
+// };
